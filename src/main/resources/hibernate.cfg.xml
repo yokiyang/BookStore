@@ -1,0 +1,61 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!-- Hibernate配置文件 -->
+<hibernate-configuration>
+<session-factory>
+	<!--配置连接目标数据库的基本信息 -->
+	<property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
+	<property name="connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+	<property name="connection.username">jsd1609</property>
+	<property name="connection.password">jsd1609</property>
+
+	<!-- 配置c3p0连接池 -->
+	<!-- 初始化连接数量 -->
+	<property name="c3p0.max_size">10</property>
+	<!-- 最小连接数量 -->
+	<property name="c3p0.min_size">2</property>
+	<!-- 连接池中最大允许多少个语句对象 -->
+	<property name="c3p0.max_statements">100</property>
+	<!-- 空闲连接检测间隔 -->
+	<property name="c3p0.idle_test_period">3000</property>
+	<!-- 最长等待时间,超时时间 -->
+	<property name="c3p0.timeout">5000</property>
+	<!-- 连接池扩容步长 -->
+	<property name="c3p0.acquire_increment">5</property>
+
+	<!-- 开启二级缓存 -->
+	<property name="cache.use_second_level_cache">true</property>
+
+	<!-- 指定缓存供应商 -->
+	<property name="cache.region.factory_class">
+		org.hibernate.cache.ehcache.EhCacheRegionFactory
+	</property>
+
+	<!-- 开启查询缓存 -->
+	<property name="cache.use_query_cache">true</property>
+
+	<!-- 配置数据库方言 -->
+	<property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
+
+	<!-- 显示SQL语句 -->
+	<property name="show_sql">true</property>
+
+	<!-- 格式化SQL语句 -->
+	<property name="format_sql">true</property>
+
+	<!-- 开启自动生成DDL语句 -->
+	<property name="hbm2ddl.auto">update</property>
+
+	<!-- 导入目标实体类 -->
+	<property name="myeclipse.connection.profile">MyOracle</property>
+	<mapping class="com.tz.bms.entity.Book" />
+	<mapping class="com.tz.bms.entity.Category" />
+	<mapping class="com.tz.bms.entity.User" />
+	<mapping class="com.tz.bms.entity.Address" />
+	<mapping class="com.tz.bms.entity.Order" />
+	<mapping class="com.tz.bms.entity.OrderItem" />
+
+</session-factory>
+</hibernate-configuration>
